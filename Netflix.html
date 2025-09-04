@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netflix Clone</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(to top, transparent 0%, rgba(0,0,0,0.8) 100%);
+      z-index: 100;
+      transition: background 0.3s ease;
+    }
+
+    .logo {
+      width: 120px;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li {
+      cursor: pointer;
+      transition: color 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .nav-links li:hover {
+      color: #e50914;
+    }
+
+    .profile {
+      width: 35px;
+      border-radius: 5px;
+    }
+
+    /* Banner */
+    .banner {
+      background: url("images/banner.jpg") center center/cover no-repeat;
+      height: 80vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 50px;
+      color: white;
+    }
+
+    .banner::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to right, #111 20%, transparent 80%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .banner-content {
+      z-index: 1;
+      max-width: 600px;
+      margin-left: 30px;
+    }
+
+    .banner h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .banner p {
+      margin-bottom: 20px;
+      line-height: 1.4;
+      font-size: 1.1rem;
+    }
+
+    .banner-buttons .btn {
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 10px 20px;
+      margin-right: 10px;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .banner-buttons .btn:first-child {
+      background-color: white;
+      color: black;
+    }
+
+    .banner-buttons .btn:first-child:hover {
+      background-color: #e6e6e6;
+    }
+
+    .banner-buttons .btn:last-child {
+      background-color: rgba(109, 109, 110, 0.7);
+      color: white;
+    }
+
+    .banner-buttons .btn:last-child:hover {
+      background-color: rgba(109, 109, 110, 0.4);
+    }
+
+    /* Movie Rows */
+    .row {
+      margin-top: 20px;
+      padding: 20px;
+    }
+
+    .row h2 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .row-posters {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .row-posters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .poster {
+      width: 150px;
+      max-height: 225px;
+      border-radius: 4px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      object-fit: cover;
+    }
+
+    .poster:hover {
+      transform: scale(1.15);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.8);
+      z-index: 10;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .banner-content h1 {
+        font-size: 2rem;
+      }
+      .banner-content p {
+        font-size: 0.9rem;
+      }
+      .poster {
+        width: 120px;
+        max-height: 180px;
+      }
+      .nav-links {
+        gap: 10px;
+      }
+      .nav-links li {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <img src="images/logo.png" alt="Netflix Logo" class="logo" />
+    <ul class="nav-links">
+      <li>Home</li>
+      <li>TV Shows</li>
+      <li>Movies</li>
+      <li>Latest</li>
+      <li>My List</li>
+    </ul>
+    <img src="images/profile.png" alt="User Profile Icon" class="profile" />
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <div class="banner-content">
+      <h1>Stranger Things</h1>
+      <p>When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces, and one strange little girl.</p>
+      <div class="banner-buttons">
+        <button class="btn">▶ Play</button>
+        <button class="btn">ℹ More Info</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Movie Rows -->
+  <section class="row">
+    <h2>Trending Now</h2>
+    <div class="row-posters">
+      <img src="images/movie1.jpg" alt="Movie 1 Poster" class="poster" />
+      <img src="images/movie2.jpg" alt="Movie 2 Poster" class="poster" />
+      <img src="images/movie3.jpg" alt="Movie 3 Poster" class="poster" />
+      <img src="images/movie4.jpg" alt="Movie 4 Poster" class="poster" />
+      <img src="images/movie5.jpg" alt="Movie 5 Poster" class="poster" />
+    </div>
+  </section>
+
+  <section class="row">
+    <h2>Top Rated</h2>
+    <div class="row-posters">
+      <img src="images/movie6.jpg" alt="Movie 6 Poster" class="poster" />
+      <img src="images/movie7.jpg" alt="Movie 7 Poster" class="poster" />
+      <img src="images/movie8.jpg" alt="Movie 8 Poster" class="poster" />
+      <img src="images/movie9.jpg" alt="Movie 9 Poster" class="poster" />
+      <img src="images/movie10.jpg" alt="Movie 10 Poster" class="poster" />
+    </div>
+  </section>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.backgroundColor = '#111';
+      } else {
+        navbar.style.background = 'linear-gradient(to top, transparent 0%, rgba(0,0,0,0.8) 100%)';
+      }
+    });
+  </script>
+</body>
+</html>
+</content>
+</create_file>
